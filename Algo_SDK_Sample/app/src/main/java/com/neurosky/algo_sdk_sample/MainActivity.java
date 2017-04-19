@@ -100,6 +100,10 @@ public class MainActivity extends Activity {
 
     private ImageView blinkImage;
 
+    private ImageView yyGustoImage;
+
+    private ImageView yyDisgustoImage;
+
     private NskAlgoSdk nskAlgoSdk;
 
     private int bLastOutputInterval = 1;
@@ -143,6 +147,8 @@ public class MainActivity extends Activity {
         yyCheckBox = (CheckBox)this.findViewById(R.id.yyCheckBox);
 
         blinkImage = (ImageView)this.findViewById(R.id.blinkImage);
+        yyGustoImage = (ImageView) this.findViewById(R.id.yyGustoImage);
+        yyDisgustoImage = (ImageView) this.findViewById(R.id.yyDisgustoImage);
 
         sqText = (TextView)this.findViewById(R.id.sqText);
 
@@ -553,7 +559,7 @@ public class MainActivity extends Activity {
          */
         nskAlgoSdk.setOnYYAlgoIndexListener(new NskAlgoSdk.OnYYAlgoIndexListener() {
             @Override
-            public void onYYAlgoIndex(float value) {
+            public void onYYAlgoIndex(final float value) {
                 Log.d(TAG, "NskAlgoYYAlgoIndexListener: YY: " + value);
                 final String yyStr = "[" + value + "]";
                 final String finalYYStr = yyStr;
@@ -561,7 +567,40 @@ public class MainActivity extends Activity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        // change UI elements here
+                        // Aqui se cambian las cosas en la interfaz!
+                        // AQUI TAMBIEN TENEMOS QUE HACER LA COMUNICACION CON EL REPRODUCTOR
+                        if (value > 0) {
+                            //ESTO QUIERE DECIR QUE ME GUSTA (para efectos del prototipo no deberia hacerse nada aqui)
+                            yyGustoImage.setImageResource(R.mipmap.led_on);
+                            Timer timer = new Timer();
+
+                            timer.schedule(new TimerTask() {
+                                public void run() {
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            yyGustoImage.setImageResource(R.mipmap.led_off);
+                                        }
+                                    });
+                                }
+                            }, 500);
+                        }
+                        if (value < 0){
+                            //ESTO QUIERE DECIR QUE NO ME GUSTA
+                            yyDisgustoImage.setImageResource(R.mipmap.led_on);
+                            Timer timer = new Timer();
+
+                            timer.schedule(new TimerTask() {
+                                public void run() {
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            yyDisgustoImage.setImageResource(R.mipmap.led_off);
+                                        }
+                                    });
+                                }
+                            }, 500);
+                        }
                         AddValueToPlot(yySeries, fValue);
                     }
                 });

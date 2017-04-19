@@ -174,7 +174,8 @@
         android:maxWidth="10dp"
         android:layout_toRightOf="@+id/blinkTitle"
         android:layout_alignBottom="@+id/blinkTitle"
-        android:layout_alignTop="@+id/blinkTitle"/>
+        android:layout_alignTop="@+id/blinkTitle"
+        android:layout_marginLeft="10dp" />
 
     <TextView
         android:text="Gusto"
@@ -197,7 +198,8 @@
         android:maxWidth="10dp"
         android:layout_toRightOf="@+id/yyGustoTitle"
         android:layout_alignBottom="@+id/yyGustoTitle"
-        android:layout_alignTop="@+id/yyGustoTitle"/>
+        android:layout_alignTop="@+id/yyGustoTitle"
+        android:layout_marginLeft="10dp" />
 
     <TextView
         android:text="Disusto"
@@ -220,7 +222,8 @@
         android:maxWidth="10dp"
         android:layout_alignBottom="@+id/yyDisgustoTitle"
         android:layout_alignTop="@+id/yyDisgustoTitle"
-        android:layout_toRightOf="@+id/yyDisgustoTitle"/>
+        android:layout_toRightOf="@+id/yyDisgustoTitle"
+        android:layout_marginLeft="10dp" />
 
     <CheckBox
         android:layout_width="wrap_content"
