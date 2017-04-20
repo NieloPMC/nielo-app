@@ -43,6 +43,7 @@ import com.neurosky.connection.DataType.MindDataType;
 
 import com.androidplot.xy.*;
 
+
 public class MainActivity extends Activity {
 
     final String TAG = "MainActivityTag";
@@ -238,6 +239,7 @@ public class MainActivity extends Activity {
                         AssetManager assetManager = getAssets();
                         InputStream inputStream = null;
                         int count = 0;
+
 
                         Log.d(TAG, "Reading raw data");
                         try {
