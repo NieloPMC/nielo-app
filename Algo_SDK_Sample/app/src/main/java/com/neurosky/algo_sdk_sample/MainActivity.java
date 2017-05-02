@@ -23,7 +23,7 @@ import android.app.AlertDialog;
 import java.util.Calendar;
 import java.util.Timer;
 import java.util.TimerTask;
-
+import android.media.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -589,6 +589,7 @@ public class MainActivity extends Activity {
                         }
                         if (value < 0){
                             //ESTO QUIERE DECIR QUE NO ME GUSTA
+                            android.media.
                             yyDisgustoImage.setImageResource(R.mipmap.led_on);
                             Timer timer = new Timer();
 
