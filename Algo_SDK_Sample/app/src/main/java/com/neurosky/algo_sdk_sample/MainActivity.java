@@ -589,7 +589,7 @@ public class MainActivity extends Activity {
                         }
                         if (value < 0){
                             //ESTO QUIERE DECIR QUE NO ME GUSTA
-                            android.media.
+                            //android.media.
                             yyDisgustoImage.setImageResource(R.mipmap.led_on);
                             Timer timer = new Timer();
 
