@@ -56,6 +56,7 @@ public class MainActivity extends Activity {
     //Reproductor
     MediaPlayer mp;
     int songpos;
+    Random rand;
     int contadorDisgusto;
     int contadorYY;
     //Timer
@@ -124,6 +125,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+        rand = new Random();
         contadorYY = 0;
         contadorDisgusto = 0;
         songpos = 0;
@@ -628,14 +630,7 @@ public class MainActivity extends Activity {
                             //if(contadorYY >= 20 && contadorDisgusto>=4)
                             //{
                                 ArrayList<File> songs = findSongs(new File("/sdcard/Ringtones"));
-                                if(songpos==(songs.size()-1))
-                                {
-                                    songpos=0;
-                                }
-                                else
-                                {
-                                    songpos++;
-                                }
+                                songpos = rand.nextInt((songs.size()-1));
                                 File song = findSongs(new File("/sdcard/Ringtones")).get(songpos);
                                 Uri ur =  Uri.parse(song.toString());
                                 if(mp.isPlaying()){
