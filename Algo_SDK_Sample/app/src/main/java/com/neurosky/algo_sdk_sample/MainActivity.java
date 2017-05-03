@@ -655,11 +655,12 @@ public class MainActivity extends Activity {
 
         if(mp == null && song != null) {
             mp = MediaPlayer.create(getApplicationContext(), ur);
-            System.out.println("*********************************************************************");
+            //Reproduce cancion correctamente
             mp.start();
         }
     }
 
+    //Esto encuentra canciones dada una ruta especifica, pero no es llamado en ningun momento aun
     private ArrayList<File> findSongs(File root)
     {
         ArrayList<File> songs = new ArrayList<File>();
