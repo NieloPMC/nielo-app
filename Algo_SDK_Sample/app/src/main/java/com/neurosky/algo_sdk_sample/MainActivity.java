@@ -26,6 +26,7 @@ import android.app.AlertDialog;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 import android.media.*;
@@ -647,6 +648,8 @@ public class MainActivity extends Activity {
                                 contadorDisgusto = 0;
                                 contadorYY = 0;
                             }
+
+
 
                         }
                         AddValueToPlot(yySeries, fValue);
