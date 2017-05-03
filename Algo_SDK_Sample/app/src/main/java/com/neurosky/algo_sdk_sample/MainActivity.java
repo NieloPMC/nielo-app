@@ -625,8 +625,8 @@ public class MainActivity extends Activity {
                                     });
                                 }
                             }, 500);
-                            if(contadorYY >= 20 && contadorDisgusto>=4)
-                            {
+                            //if(contadorYY >= 20 && contadorDisgusto>=4)
+                            //{
                                 ArrayList<File> songs = findSongs(new File("/sdcard/Ringtones"));
                                 if(songpos==(songs.size()-1))
                                 {
@@ -647,7 +647,7 @@ public class MainActivity extends Activity {
                                 mp.start();
                                 contadorDisgusto = 0;
                                 contadorYY = 0;
-                            }
+                            //}
 
 
 
