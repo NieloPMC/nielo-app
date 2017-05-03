@@ -26,6 +26,7 @@ import android.app.AlertDialog;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 import android.media.*;
@@ -56,6 +57,7 @@ public class MainActivity extends Activity {
     MediaPlayer mp;
     int songpos;
     int contador;
+    Random rand;
     //Timer
 
 
@@ -122,7 +124,7 @@ public class MainActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
+        rand = new Random();
         contador = 0;
         songpos = 0;
         super.onCreate(savedInstanceState);
@@ -618,17 +620,10 @@ public class MainActivity extends Activity {
                                     });
                                 }
                             }, 500);
-                            if(contador>4)
+                            if(contador>2)
                             {
                                 ArrayList<File> songs = findSongs(new File("/sdcard/Ringtones"));
-                                if(songpos==(songs.size()-1))
-                                {
-                                    songpos=0;
-                                }
-                                else
-                                {
-                                    songpos++;
-                                }
+                                songpos = rand.nextInt((songs.size()-1));
                                 File song = findSongs(new File("/sdcard/Ringtones")).get(songpos);
                                 Uri ur =  Uri.parse(song.toString());
                                 if(mp.isPlaying()){
