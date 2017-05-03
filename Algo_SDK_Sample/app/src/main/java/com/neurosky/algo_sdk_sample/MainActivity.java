@@ -601,7 +601,7 @@ public class MainActivity extends Activity {
                             //android.media.
                             yyDisgustoImage.setImageResource(R.mipmap.led_on);
                             Timer timer = new Timer();
-
+                            
                             timer.schedule(new TimerTask() {
                                 public void run() {
                                     runOnUiThread(new Runnable() {
