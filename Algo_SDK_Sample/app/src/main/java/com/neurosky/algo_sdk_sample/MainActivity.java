@@ -56,10 +56,10 @@ public class MainActivity extends Activity {
     //Reproductor
     MediaPlayer mp;
     int songpos;
-    int contador;
     Random rand;
+    int contadorDisgusto;
+    int contadorYY;
     //Timer
-
 
     // graph plot variables
     private final static int X_RANGE = 50;
@@ -124,8 +124,10 @@ public class MainActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         rand = new Random();
-        contador = 0;
+        contadorYY = 0;
+        contadorDisgusto = 0;
         songpos = 0;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -587,11 +589,14 @@ public class MainActivity extends Activity {
                     public void run() {
                         // Aqui se cambian las cosas en la interfaz!
                         // AQUI TAMBIEN TENEMOS QUE HACER LA COMUNICACION CON EL REPRODUCTOR
+                        if (value == 0){
+                            contadorYY++;
+                        }
                         if (value > 0) {
                             //ESTO QUIERE DECIR QUE ME GUSTA (para efectos del prototipo no deberia hacerse nada aqui)
+                            contadorYY++;
                             yyGustoImage.setImageResource(R.mipmap.led_on);
                             Timer timer = new Timer();
-
                             timer.schedule(new TimerTask() {
                                 public void run() {
                                     runOnUiThread(new Runnable() {
@@ -606,7 +611,9 @@ public class MainActivity extends Activity {
                         if (value < 0){
                             //ESTO QUIERE DECIR QUE NO ME GUSTA
                             //android.media.
-                            contador++;
+                            contadorYY++;
+                            contadorDisgusto++;
+
                             yyDisgustoImage.setImageResource(R.mipmap.led_on);
                             Timer timer = new Timer();
                             
@@ -620,7 +627,7 @@ public class MainActivity extends Activity {
                                     });
                                 }
                             }, 500);
-                            if(contador>2)
+                            if(contadorYY >= 20 && contadorDisgusto>=4)
                             {
                                 ArrayList<File> songs = findSongs(new File("/sdcard/Ringtones"));
                                 songpos = rand.nextInt((songs.size()-1));
@@ -633,8 +640,11 @@ public class MainActivity extends Activity {
                                 mp = MediaPlayer.create(getApplicationContext(), ur);
                                 //Reproduce cancion correctamente
                                 mp.start();
-                                contador=0;
+                                contadorDisgusto = 0;
+                                contadorYY = 0;
                             }
+
+
 
                         }
                         AddValueToPlot(yySeries, fValue);
