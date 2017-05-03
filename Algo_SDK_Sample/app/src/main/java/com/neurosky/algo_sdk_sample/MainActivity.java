@@ -58,6 +58,7 @@ public class MainActivity extends Activity {
     int contador;
     //Timer
 
+
     // graph plot variables
     private final static int X_RANGE = 50;
     private SimpleXYSeries yySeries = null;
@@ -121,6 +122,7 @@ public class MainActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         contador = 0;
         songpos = 0;
         super.onCreate(savedInstanceState);
@@ -678,8 +680,9 @@ public class MainActivity extends Activity {
         text.setVisibility(View.INVISIBLE);
 
         //Reproduce musica
-        File song = findSongs(new File("/sdcard/Ringtones")).get(songpos);
+        File song = new File("/sdcard/Ringtones/Will.i.am - Scream And shout.mp3");
         Uri ur =  Uri.parse(song.toString());
+
         if(mp == null && song != null) {
             mp = MediaPlayer.create(getApplicationContext(), ur);
             //Reproduce cancion correctamente
