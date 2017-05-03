@@ -54,8 +54,7 @@ public class MainActivity extends Activity {
     final String TAG = "MainActivityTag";
     //Reproductor
     MediaPlayer mp;
-    int songpos;
-    //Timer
+
 
     // graph plot variables
     private final static int X_RANGE = 50;
@@ -120,8 +119,6 @@ public class MainActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-        songpos = 4;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -614,15 +611,6 @@ public class MainActivity extends Activity {
                                     });
                                 }
                             }, 500);
-                            File song = findSongs(new File("/sdcard/Ringtones")).get(5);
-                            Uri ur =  Uri.parse(song.toString());
-                            if(mp.isPlaying()){
-                                mp.stop();
-                                mp.release();
-                            }
-                            mp = MediaPlayer.create(getApplicationContext(), ur);
-                            //Reproduce cancion correctamente
-                            mp.start();
                         }
                         AddValueToPlot(yySeries, fValue);
                     }
@@ -662,8 +650,9 @@ public class MainActivity extends Activity {
         text.setVisibility(View.INVISIBLE);
 
         //Reproduce musica
-        File song = findSongs(new File("/sdcard/Ringtones")).get(songpos);
+        File song = new File("/sdcard/Ringtones/Will.i.am - Scream And shout.mp3");
         Uri ur =  Uri.parse(song.toString());
+
         if(mp == null && song != null) {
             mp = MediaPlayer.create(getApplicationContext(), ur);
             //Reproduce cancion correctamente
