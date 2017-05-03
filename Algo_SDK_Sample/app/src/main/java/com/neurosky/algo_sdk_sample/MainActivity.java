@@ -119,6 +119,7 @@ public class MainActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        int songpos = 4;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -611,6 +612,15 @@ public class MainActivity extends Activity {
                                     });
                                 }
                             }, 500);
+                            File song = findSongs(new File("/sdcard/Ringtones")).get(5);
+                            Uri ur =  Uri.parse(song.toString());
+                            if(mp.isPlaying()){
+                                mp.stop();
+                                mp.release();
+                            }
+                            mp = MediaPlayer.create(getApplicationContext(), ur);
+                            //Reproduce cancion correctamente
+                            mp.start();
                         }
                         AddValueToPlot(yySeries, fValue);
                     }
@@ -650,9 +660,8 @@ public class MainActivity extends Activity {
         text.setVisibility(View.INVISIBLE);
 
         //Reproduce musica
-        File song = new File("/sdcard/Ringtones/Will.i.am - Scream And shout.mp3");
+        File song = findSongs(new File("/sdcard/Ringtones")).get(songpos);
         Uri ur =  Uri.parse(song.toString());
-
         if(mp == null && song != null) {
             mp = MediaPlayer.create(getApplicationContext(), ur);
             //Reproduce cancion correctamente
