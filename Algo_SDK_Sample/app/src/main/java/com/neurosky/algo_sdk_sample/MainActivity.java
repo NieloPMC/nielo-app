@@ -55,6 +55,9 @@ public class MainActivity extends Activity {
     //Reproductor
     MediaPlayer mp;
     int songpos;
+    int contador;
+    //Timer
+
 
     // graph plot variables
     private final static int X_RANGE = 50;
@@ -119,7 +122,9 @@ public class MainActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        songpos=4;
+
+        contador = 0;
+        songpos = 0;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -599,6 +604,7 @@ public class MainActivity extends Activity {
                         if (value < 0){
                             //ESTO QUIERE DECIR QUE NO ME GUSTA
                             //android.media.
+                            contador++;
                             yyDisgustoImage.setImageResource(R.mipmap.led_on);
                             Timer timer = new Timer();
                             
@@ -612,25 +618,29 @@ public class MainActivity extends Activity {
                                     });
                                 }
                             }, 500);
+                            if(contador>4)
+                            {
+                                ArrayList<File> songs = findSongs(new File("/sdcard/Ringtones"));
+                                if(songpos==(songs.size()-1))
+                                {
+                                    songpos=0;
+                                }
+                                else
+                                {
+                                    songpos++;
+                                }
+                                File song = findSongs(new File("/sdcard/Ringtones")).get(songpos);
+                                Uri ur =  Uri.parse(song.toString());
+                                if(mp.isPlaying()){
+                                    mp.stop();
+                                    mp.release();
+                                }
+                                mp = MediaPlayer.create(getApplicationContext(), ur);
+                                //Reproduce cancion correctamente
+                                mp.start();
+                                contador=0;
+                            }
 
-                            ArrayList<File> songs = findSongs(new File("/sdcard/Ringtones"));
-                            if(songpos==(songs.size()-1))
-                            {
-                                songpos=0;
-                            }
-                            else
-                            {
-                                songpos++;
-                            }
-                            File song = findSongs(new File("/sdcard/Ringtones")).get(songpos);
-                            Uri ur =  Uri.parse(song.toString());
-                            if(mp.isPlaying()){
-                                mp.stop();
-                                mp.release();
-                            }
-                            mp = MediaPlayer.create(getApplicationContext(), ur);
-                            //Reproduce cancion correctamente
-                            mp.start();
                         }
                         AddValueToPlot(yySeries, fValue);
                     }
