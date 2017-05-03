@@ -7,7 +7,9 @@ import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.HandlerThread;
 import android.util.Log;
 import android.view.View;
@@ -20,6 +22,9 @@ import android.widget.Button;
 import android.widget.Toast;
 import android.content.res.AssetManager;
 import android.app.AlertDialog;
+
+import java.io.File;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -47,6 +52,9 @@ import com.androidplot.xy.*;
 public class MainActivity extends Activity {
 
     final String TAG = "MainActivityTag";
+    //Reproductor
+    MediaPlayer mp;
+
 
     // graph plot variables
     private final static int X_RANGE = 50;
@@ -640,6 +648,39 @@ public class MainActivity extends Activity {
         plot.setVisibility(View.INVISIBLE);
         text = (EditText) findViewById(R.id.myText);
         text.setVisibility(View.INVISIBLE);
+
+        //Reproduce musica
+        File song = new File("/storage");
+        Uri ur =  Uri.parse(song.toString());
+
+        if(mp == null && song != null) {
+            mp = MediaPlayer.create(getApplicationContext(), ur);
+            System.out.println("*********************************************************************");
+            //mp.start();
+        }
+    }
+
+    private ArrayList<File> findSongs(File root)
+    {
+        ArrayList<File> songs = new ArrayList<File>();
+        /*File[] file =  root.listFiles();
+        System.out.println(file);
+        System.out.println(root);
+        for(File singlefile : file)
+        {
+          if(singlefile.isDirectory() && !singlefile.isHidden())
+          {
+              songs.addAll(findSongs(singlefile));
+          }
+          else
+          {
+              if(singlefile.getName().endsWith(".mp3"))
+              {
+                  songs.add(singlefile);
+              }
+          }
+        }*/
+        return songs;
     }
 
     private void removeAllSeriesFromPlot () {
