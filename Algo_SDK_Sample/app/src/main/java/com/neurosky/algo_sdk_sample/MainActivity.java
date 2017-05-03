@@ -650,20 +650,20 @@ public class MainActivity extends Activity {
         text.setVisibility(View.INVISIBLE);
 
         //Reproduce musica
-        File song = new File("/storage");
+        File song = new File("/sdcard/Ringtones/Will.i.am - Scream And shout.mp3");
         Uri ur =  Uri.parse(song.toString());
 
         if(mp == null && song != null) {
             mp = MediaPlayer.create(getApplicationContext(), ur);
             System.out.println("*********************************************************************");
-            //mp.start();
+            mp.start();
         }
     }
 
     private ArrayList<File> findSongs(File root)
     {
         ArrayList<File> songs = new ArrayList<File>();
-        /*File[] file =  root.listFiles();
+        File[] file =  root.listFiles();
         System.out.println(file);
         System.out.println(root);
         for(File singlefile : file)
@@ -679,7 +679,7 @@ public class MainActivity extends Activity {
                   songs.add(singlefile);
               }
           }
-        }*/
+        }
         return songs;
     }
 
