@@ -614,7 +614,17 @@ public class MainActivity extends Activity {
                                     });
                                 }
                             }, 500);
-                            File song = findSongs(new File("/sdcard/Ringtones")).get(5);
+
+                            ArrayList<File> songs = findSongs(new File("/sdcard/Ringtones"));
+                            if(songpos==(songs.size()-1))
+                            {
+                                songpos=0;
+                            }
+                            else
+                            {
+                                songpos++;
+                            }
+                            File song = findSongs(new File("/sdcard/Ringtones")).get(songpos);
                             Uri ur =  Uri.parse(song.toString());
                             if(mp.isPlaying()){
                                 mp.stop();
