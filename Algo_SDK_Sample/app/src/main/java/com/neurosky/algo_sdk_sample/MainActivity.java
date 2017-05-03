@@ -54,7 +54,8 @@ public class MainActivity extends Activity {
     final String TAG = "MainActivityTag";
     //Reproductor
     MediaPlayer mp;
-
+    int songpos;
+    //Timer
 
     // graph plot variables
     private final static int X_RANGE = 50;
@@ -119,7 +120,8 @@ public class MainActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        int songpos = 4;
+
+        songpos = 4;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
