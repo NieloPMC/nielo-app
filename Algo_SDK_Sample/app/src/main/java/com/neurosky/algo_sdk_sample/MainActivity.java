@@ -59,6 +59,7 @@ public class MainActivity extends Activity {
     Random rand;
     int contadorDisgusto;
     int contadorYY;
+    boolean playing;
     //Timer
 
     // graph plot variables
@@ -606,7 +607,7 @@ public class MainActivity extends Activity {
                                         }
                                     });
                                 }
-                            }, 500);
+                            }, 5);
                         }
                         if (value < 0){
                             //ESTO QUIERE DECIR QUE NO ME GUSTA
@@ -626,12 +627,12 @@ public class MainActivity extends Activity {
                                         }
                                     });
                                 }
-                            }, 500);
-                            if(contadorYY >= 20 && contadorDisgusto>=4)
+                            }, 5);
+                            if(contadorYY >= 20 && contadorDisgusto>=4 && playing)
                             {
-                                ArrayList<File> songs = findSongs(new File("/sdcard/Ringtones"));
+                                ArrayList<File> songs = findSongs(new File("/sdcard"));
                                 songpos = rand.nextInt((songs.size()-1));
-                                File song = findSongs(new File("/sdcard/Ringtones")).get(songpos);
+                                File song = findSongs(new File("/sdcard")).get(songpos);
                                 Uri ur =  Uri.parse(song.toString());
                                 if(mp.isPlaying()){
                                     mp.stop();
@@ -661,8 +662,16 @@ public class MainActivity extends Activity {
                     @Override
                     public void run() {
                         blinkImage.setImageResource(R.mipmap.led_on);
+                        if(playing){
+                            playing = false;
+                            mp.pause();
+                        }
+                        else
+                        {
+                            mp.start();
+                            playing = true;
+                        }
                         Timer timer = new Timer();
-
                         timer.schedule(new TimerTask() {
                             public void run() {
                                 runOnUiThread(new Runnable() {
@@ -672,7 +681,7 @@ public class MainActivity extends Activity {
                                     }
                                 });
                             }
-                        }, 500);
+                        }, 5);
                     }
                 });
             }
@@ -692,6 +701,7 @@ public class MainActivity extends Activity {
             mp = MediaPlayer.create(getApplicationContext(), ur);
             //Reproduce cancion correctamente
             mp.start();
+            playing = true;
         }
     }
 
