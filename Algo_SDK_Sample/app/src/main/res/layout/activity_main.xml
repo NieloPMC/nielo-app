@@ -231,7 +231,6 @@
         android:text="Blink"
         android:id="@+id/blinkCheckBox"
         android:checked="false"
-        android:enabled="false"
         android:textSize="10dp"
         android:layout_alignParentTop="true"
         android:layout_toLeftOf="@+id/yyCheckBox"/>
