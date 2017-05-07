@@ -607,7 +607,7 @@ public class MainActivity extends Activity {
                                         }
                                     });
                                 }
-                            }, 5);
+                            }, 500);
                         }
                         if (value < 0){
                             //ESTO QUIERE DECIR QUE NO ME GUSTA
@@ -627,8 +627,8 @@ public class MainActivity extends Activity {
                                         }
                                     });
                                 }
-                            }, 5);
-                            if(contadorYY >= 20 && contadorDisgusto>=4 && playing)
+                            }, 500);
+                            if(contadorDisgusto>=1 && playing)
                             {
                                 ArrayList<File> songs = findSongs(new File("/sdcard"));
                                 songpos = rand.nextInt((songs.size()-1));
@@ -644,9 +644,6 @@ public class MainActivity extends Activity {
                                 contadorDisgusto = 0;
                                 contadorYY = 0;
                             }
-
-
-
                         }
                         AddValueToPlot(yySeries, fValue);
                     }
@@ -681,7 +678,7 @@ public class MainActivity extends Activity {
                                     }
                                 });
                             }
-                        }, 5);
+                        }, 500);
                     }
                 });
             }
@@ -694,7 +691,7 @@ public class MainActivity extends Activity {
         text.setVisibility(View.INVISIBLE);
 
         //Reproduce musica
-        File song = new File("/sdcard/Ringtones/Will.i.am - Scream And shout.mp3");
+        File song = findSongs(new File("/sdcard")).get(0);
         Uri ur =  Uri.parse(song.toString());
 
         if(mp == null && song != null) {
