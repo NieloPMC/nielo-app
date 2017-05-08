@@ -29,9 +29,9 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="MindWave"
+        android:text="2. MindWave"
         android:id="@+id/headsetButton"
-        android:layout_below="@+id/stateTitle"
+        android:layout_below="@+id/startButton"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:textSize="12dp"
@@ -41,12 +41,12 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Texto ejemplo"
+        android:text="2. Grabacion"
         android:id="@+id/cannedDatabutton"
         android:layout_alignTop="@+id/headsetButton"
         android:layout_toRightOf="@+id/headsetButton"
         android:layout_toEndOf="@+id/sqText"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="40dp"
         android:textSize="12dp"
         android:maxHeight="20dp"
         android:minHeight="20dp" />
@@ -54,11 +54,11 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Comenzar"
+        android:text="1. Comenzar"
         android:id="@+id/startButton"
-        android:layout_below="@+id/headsetButton"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:layout_below="@+id/stateTitle"
         android:enabled="false"
         android:textSize="12dp"
         android:minHeight="20dp"
@@ -73,8 +73,8 @@
         android:textSize="12dp"
         android:maxHeight="20dp"
         android:minHeight="20dp"
-        android:layout_below="@+id/startButton"
-        android:layout_alignParentLeft="true" />
+        android:layout_alignLeft="@id/cannedDatabutton"
+        android:layout_alignTop="@id/startButton"/>
 
     <include
         android:layout_width="wrap_content"
@@ -98,7 +98,8 @@
         android:maxHeight="20dp"
         android:minHeight="20dp"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/yyCheckBox"/>
+        android:layout_below="@+id/yyCheckBox"
+        android:visibility="invisible"/>
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -112,7 +113,8 @@
         android:maxHeight="20dp"
         android:minHeight="20dp"
         android:layout_below="@+id/yyTitle"
-        android:layout_alignParentLeft="true"/>
+        android:layout_alignParentLeft="true"
+        android:visibility="invisible"/>
 
     <SeekBar
         android:layout_width="wrap_content"
@@ -124,7 +126,8 @@
         android:layout_toStartOf="@+id/intervalText"
         android:max="4"
         android:indeterminate="false"
-        android:layout_toRightOf="@+id/intervalText" />
+        android:layout_toRightOf="@+id/intervalText"
+        android:visibility="invisible"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -160,7 +163,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/stopButton" />
+        android:layout_below="@+id/headsetButton"
+        android:layout_marginTop="20dp"/>
 
     <ImageView
         android:layout_width="wrap_content"
@@ -184,7 +188,7 @@
         android:id="@+id/yyGustoTitle"
         android:layout_toRightOf="@+id/blinkImage"
         android:layout_alignBottom="@+id/blinkTitle"
-        android:layout_marginLeft="10dp" />
+        android:layout_marginLeft="30dp" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -208,7 +212,7 @@
         android:id="@+id/yyDisgustoTitle"
         android:layout_toRightOf="@+id/yyGustoImage"
         android:layout_alignTop="@+id/yyGustoTitle"
-        android:layout_marginLeft="10dp" />
+        android:layout_marginLeft="30dp" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -233,7 +237,8 @@
         android:checked="true"
         android:textSize="10dp"
         android:layout_alignParentTop="true"
-        android:layout_toLeftOf="@+id/yyCheckBox"/>
+        android:layout_toLeftOf="@+id/yyCheckBox"
+        android:visibility="invisible"/>
 
     <CheckBox
         android:layout_width="wrap_content"
@@ -243,7 +248,8 @@
         android:checked="true"
         android:textSize="10dp"
         android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"/>
+        android:layout_alignParentRight="true"
+        android:visibility="invisible"/>
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -256,22 +262,8 @@
         android:maxHeight="20dp"
         android:minHeight="20dp"
         android:layout_alignParentLeft="true"
-        android:layout_below="@id/blinkTitle" />
-
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:id="@+id/backgroundService"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Correr en background"
-        android:clickable="true"
-        android:textSize="12dp"
-        android:maxHeight="20dp"
-        android:minHeight="20dp"
-        android:layout_alignTop="@+id/startButton"
-        android:layout_toRightOf="@+id/startButton"
-        android:layout_alignBottom="@+id/startButton"
-        android:layout_marginLeft="10dp"/>
+        android:layout_below="@id/blinkTitle"
+        android:visibility="invisible"/>
 
 
 </RelativeLayout>

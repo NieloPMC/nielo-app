@@ -287,6 +287,7 @@ public class MainActivity extends Activity {
                             e.printStackTrace();
                         }*/
                         Log.d(TAG, "Finished reading data");
+
                     }
                 });
                 mThread.start();
@@ -373,6 +374,20 @@ public class MainActivity extends Activity {
                     }
                     showToast(sdkVersion, Toast.LENGTH_LONG);
                 }
+                removeAllSeriesFromPlot();
+                setupPlot(-1, 1, "YinYang");
+                addSeries(plot, yySeries, R.xml.line_point_formatter_with_plf1);
+                plot.redraw();
+
+                text.setVisibility(View.INVISIBLE);
+
+                currentSelectedAlgo = NskAlgoType.NSK_ALGO_TYPE_YY;
+
+                intervalSeekBar.setMax(9);
+                intervalSeekBar.setProgress(yyInterval - 1);
+                intervalSeekBar.setEnabled(true);
+                intervalText.setText(String.format("%d", yyInterval));
+                setIntervalButton.setEnabled(true);
             }
         });
 
@@ -512,14 +527,14 @@ public class MainActivity extends Activity {
 
                         if (finalState == NskAlgoState.NSK_ALGO_STATE_RUNNING.value || finalState == NskAlgoState.NSK_ALGO_STATE_COLLECTING_BASELINE_DATA.value) {
                             bRunning = true;
-                            startButton.setText("Pause");
+                            startButton.setText("Pausar");
                             startButton.setEnabled(true);
                             stopButton.setEnabled(true);
                         } else if (finalState == NskAlgoState.NSK_ALGO_STATE_STOP.value) {
                             bRunning = false;
                             raw_data = null;
                             raw_data_index = 0;
-                            startButton.setText("Start");
+                            startButton.setText("1. Comenzar");
                             startButton.setEnabled(true);
                             stopButton.setEnabled(false);
 
@@ -539,17 +554,17 @@ public class MainActivity extends Activity {
                             System.gc();
                         } else if (finalState == NskAlgoState.NSK_ALGO_STATE_PAUSE.value) {
                             bRunning = false;
-                            startButton.setText("Start");
+                            startButton.setText("1. Comenzar");
                             startButton.setEnabled(true);
                             stopButton.setEnabled(true);
                         } else if (finalState == NskAlgoState.NSK_ALGO_STATE_ANALYSING_BULK_DATA.value) {
                             bRunning = true;
-                            startButton.setText("Start");
+                            startButton.setText("1. Comenzar");
                             startButton.setEnabled(false);
                             stopButton.setEnabled(true);
                         } else if (finalState == NskAlgoState.NSK_ALGO_STATE_INITED.value || finalState == NskAlgoState.NSK_ALGO_STATE_UNINTIED.value) {
                             bRunning = false;
-                            startButton.setText("Start");
+                            startButton.setText("1. Comenzar");
                             startButton.setEnabled(true);
                             stopButton.setEnabled(false);
                         }
@@ -700,6 +715,8 @@ public class MainActivity extends Activity {
             mp.start();
             playing = true;
         }
+
+        setAlgosButton.performClick();
     }
 
     //Esto encuentra canciones dada una ruta especifica, pero no es llamado en ningun momento aun
