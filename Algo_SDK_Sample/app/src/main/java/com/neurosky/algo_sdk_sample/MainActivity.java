@@ -736,8 +736,15 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View view) {
                 lastSongText.setText("Reproduciendo");
-                if (mp != null && !playing){
-                    playing = true;
+                if (mp != null && playing){
+                    ArrayList<File> songs = findSongs(new File("/sdcard"));
+                    songpos = rand.nextInt((songs.size()-1));
+                    File song = findSongs(new File("/sdcard")).get(songpos);
+                    Uri ur =  Uri.parse(song.toString());
+                    mp.stop();
+                    mp.release();
+                    mp = MediaPlayer.create(getApplicationContext(), ur);
+                    //Reproduce cancion correctamente
                     mp.start();
                 }
             }
