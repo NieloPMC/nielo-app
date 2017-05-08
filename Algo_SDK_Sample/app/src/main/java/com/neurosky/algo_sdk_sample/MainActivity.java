@@ -103,6 +103,9 @@ public class MainActivity extends Activity {
     private Button startButton;
     private Button stopButton;
 
+    private Button pauseSongButton;
+    private Button nextSongButton;
+
     private SeekBar intervalSeekBar;
     private TextView intervalText;
 
@@ -112,7 +115,7 @@ public class MainActivity extends Activity {
     private CheckBox yyCheckBox;
 
     private TextView sqText;
-
+    private TextView lastSongText;
     private ImageView blinkImage;
 
     private ImageView yyGustoImage;
@@ -158,6 +161,9 @@ public class MainActivity extends Activity {
         startButton = (Button)this.findViewById(R.id.startButton);
         stopButton = (Button)this.findViewById(R.id.stopButton);
 
+        pauseSongButton = (Button) this.findViewById(R.id.pauseSongButton);
+        nextSongButton = (Button) this.findViewById(R.id.nextSongButton);
+
         intervalSeekBar = (SeekBar)this.findViewById(R.id.intervalSeekBar);
         intervalText = (TextView)this.findViewById(R.id.intervalText);
 
@@ -171,7 +177,7 @@ public class MainActivity extends Activity {
         yyDisgustoImage = (ImageView) this.findViewById(R.id.yyDisgustoImage);
 
         sqText = (TextView)this.findViewById(R.id.sqText);
-
+        lastSongText = (TextView) this.findViewById(R.id.lastSongText);
         headsetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -332,7 +338,7 @@ public class MainActivity extends Activity {
                 intervalText.setText("--");
 
                 crThreshold = alThreshold = cpThreshold = NskAlgoConfig.NskAlgoBCQThreshold.NSK_ALGO_BCQ_THRESHOLD_LIGHT;
-                yyInterval = 5;
+                yyInterval = 1;
                 sqText.setText("");
 
                 if (blinkCheckBox.isChecked()) {
@@ -677,11 +683,15 @@ public class MainActivity extends Activity {
                         if(playing){
                             playing = false;
                             mp.pause();
+                            lastSongText.setText("Pausado");
+                            pauseSongButton.setText(">");
                         }
                         else
                         {
                             mp.start();
                             playing = true;
+                            lastSongText.setText("Reproduciendo");
+                            pauseSongButton.setText("||");
                         }
                         Timer timer = new Timer();
                         timer.schedule(new TimerTask() {
@@ -696,6 +706,40 @@ public class MainActivity extends Activity {
                         }, 500);
                     }
                 });
+            }
+        });
+
+        //INICIALIZAR BOTONES Y ESAS COSAS
+
+        pauseSongButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mp != null){
+                    if(playing){
+                        playing = false;
+                        mp.pause();
+                        lastSongText.setText("Pausado");
+                        pauseSongButton.setText(">");
+                    }
+                    else
+                    {
+                        mp.start();
+                        playing = true;
+                        lastSongText.setText("Reproduciendo");
+                        pauseSongButton.setText("||");
+                    }
+                }
+            }
+        });
+
+        nextSongButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                lastSongText.setText("Reproduciendo");
+                if (mp != null && !playing){
+                    playing = true;
+                    mp.start();
+                }
             }
         });
 

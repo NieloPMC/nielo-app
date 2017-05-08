@@ -137,7 +137,8 @@
         android:id="@+id/intervalText"
         android:layout_alignBottom="@+id/intervalSeekBar"
         android:layout_alignRight="@+id/include"
-        android:layout_alignEnd="@+id/include" />
+        android:layout_alignEnd="@+id/include"
+        android:visibility="invisible"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -228,6 +229,31 @@
         android:layout_alignTop="@+id/yyDisgustoTitle"
         android:layout_toRightOf="@+id/yyDisgustoTitle"
         android:layout_marginLeft="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/lastSongText"
+        android:layout_below="@id/blinkTitle"
+        android:layout_alignLeft="@id/blinkTitle"
+        android:text="Reproduciendo"
+        android:layout_marginTop="20dp"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="||"
+        android:id="@+id/pauseSongButton"
+        android:layout_below="@id/blinkTitle"
+        android:layout_alignLeft="@id/yyGustoTitle"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/nextSongButton"
+        android:text="->"
+        android:layout_below="@id/blinkTitle"
+        android:layout_alignLeft="@id/yyDisgustoTitle"/>
 
     <CheckBox
         android:layout_width="wrap_content"
