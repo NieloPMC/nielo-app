@@ -706,7 +706,9 @@ public class MainActivity extends Activity {
         text.setVisibility(View.INVISIBLE);
 
         //Reproduce musica
-        File song = findSongs(new File("/sdcard")).get(0);
+        ArrayList<File> songs = findSongs(new File("/sdcard"));
+        songpos = rand.nextInt((songs.size()-1));
+        File song = songs.get((songpos));
         Uri ur =  Uri.parse(song.toString());
 
         if(mp == null && song != null) {
