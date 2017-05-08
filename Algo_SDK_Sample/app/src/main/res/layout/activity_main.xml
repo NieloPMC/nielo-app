@@ -230,7 +230,7 @@
         android:layout_height="wrap_content"
         android:text="Blink"
         android:id="@+id/blinkCheckBox"
-        android:checked="false"
+        android:checked="true"
         android:textSize="10dp"
         android:layout_alignParentTop="true"
         android:layout_toLeftOf="@+id/yyCheckBox"/>
@@ -240,7 +240,7 @@
         android:layout_height="wrap_content"
         android:text="YY"
         android:id="@+id/yyCheckBox"
-        android:checked="false"
+        android:checked="true"
         android:textSize="10dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"/>
